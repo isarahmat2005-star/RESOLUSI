@@ -12,7 +12,7 @@
             --log-bg: #111827; --log-text: #60a5fa; --grid-color: rgba(37, 99, 235, 0.1);
         }
 
-        /* Variasi Tema Lengkap (100% Disertakan) */
+        /* Variasi Tema Lengkap */
         body.light-clean { --primary: #2563eb; --bg-body: #f0f2f5; --card-bg: #ffffff; --text: #1f2937; --input-bg: #ffffff; --border: #2563eb; }
         body.luxury-gold { --primary: #d4af37; --bg-body: #1a1a1a; --card-bg: #2d2d2d; --text: #d4af37; --input-bg: #3d3d3d; --border: #d4af37; }
         body.dark-pro { --primary: #3b82f6; --bg-body: #050505; --card-bg: #121212; --text: #e0e0e0; --input-bg: #1e1e1e; --border: #3b82f6; }
@@ -81,7 +81,8 @@
         .btn-tab { background: var(--input-bg); border: 2px solid var(--border); font-family: 'Share Tech', sans-serif; font-size: 14px; font-weight: bold; color: var(--text); cursor: pointer; padding: 10px 20px; border-radius: 0; box-shadow: 0 4px 0 var(--border); transition: 0.1s; text-transform: uppercase; }
         .btn-tab.active { color: white !important; background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 rgba(0,0,0,0.2); transform: translateY(-2px); }
 
-        #tabContent { min-height: 180px; display: flex; flex-direction: column; gap: 15px; }
+        /* KUNCI TINGGI TAB AGAR TIDAK MELOMPAT */
+        #tabContent { height: 250px; display: flex; flex-direction: column; gap: 15px; }
 
         .input-group { display: flex; flex-direction: column; gap: 5px; }
         .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
@@ -96,11 +97,10 @@
         .input-field { width: 100%; background: var(--input-bg); border: 2px solid var(--border); padding: 8px 12px; color: var(--text); font-family: 'Share Tech', sans-serif; box-sizing: border-box; border-radius: 0; font-size: 14px; font-weight: bold; height: 40px; transition: all 0.3s ease; }
         .input-field:focus { outline: none; border-color: var(--primary) !important; box-shadow: 0 0 8px var(--primary); }
         
-        /* Custom Checkbox */
         .check-container { display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: bold; font-size: 13px; color: var(--text); }
         .check-container input { width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; border-radius: 0; }
 
-        .action-bars { display: flex; gap: 10px; margin-bottom: 15px; margin-top: auto; }
+        .action-bars { display: flex; gap: 10px; margin-top: auto; }
         .btn-main { flex: 1; border: none; padding: 0; cursor: pointer; font-family: 'Share Tech', sans-serif; font-weight: bold; text-transform: uppercase; border-radius: 0; font-size: 16px; position: relative; height: 45px; display: flex; align-items: center; justify-content: center; transition: 0.1s; }
         .start { background: var(--primary); color: white; box-shadow: 0 4px 0 rgba(0,0,0,0.2); }
         .pause { background: #f59e0b !important; color: white !important; box-shadow: 0 4px 0 #b45309 !important; }
@@ -108,20 +108,19 @@
         .btn-main:active:not(:disabled) { top: 2px; box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
         .btn-main:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none !important; top: 0 !important; transform: none !important;}
 
-        .log-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .log-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; margin-top: auto; }
         .log-panel { background: var(--log-bg); border: 2px solid var(--border); height: 100px; flex-shrink: 0; padding: 10px; overflow-y: scroll; font-size: 11px; color: var(--log-text); border-radius: 0; font-family: 'Share Tech Mono', monospace; }
         .log-entry { margin-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 2px; }
         .btn-mode { background: none; border: none; color: var(--primary); cursor: pointer; font-family: 'Share Tech', sans-serif; font-size: 12px; text-decoration: underline; padding: 0; font-weight: bold;}
         
         ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--bg-body); } ::-webkit-scrollbar-thumb { background: var(--primary); border: 1px solid var(--border); }
         
-        /* Preview Canvas yang disembunyikan */
         #renderCanvas, #sourceVideo { display: none; }
     </style>
 </head>
 <body class="light-clean">
 
-    <!-- Elemen Tersembunyi Untuk Mesin Video -->
+    <!-- Elemen Tersembunyi Untuk Mesin Gambar/Video -->
     <video id="sourceVideo" muted playsinline></video>
     <canvas id="renderCanvas"></canvas>
 
@@ -138,6 +137,10 @@
                 </div>
 
                 <div class="nav-actions">
+                    <!-- Tombol Support Dikembalikan -->
+                    <a href="https://lynk.id/isaproject/0581ez0729vx" target="_blank" class="btn-nav-icon lock-target" style="background: #6f4e37;" title="Support Me">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                    </a>
                     <button class="btn-nav-icon lock-target" onclick="toggleThemeMenu()">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.5-.58 1.5-1.5 0-.43-.17-.83-.44-1.14-.24-.28-.39-.65-.39-1.05 0-.85.68-1.55 1.53-1.55H16c3.31 0 6-2.69 6-6 0-4.97-4.48-9-10-9z"></path></svg>
                     </button>
@@ -191,13 +194,7 @@
             </div>
             
             <div id="tabContent">
-                <!-- Konten akan di-render dari JS -->
-            </div>
-
-            <div class="action-bars">
-                <button id="btnStart" class="btn-main start lock-target" onclick="startProcess()" disabled>START</button>
-                <button id="btnPause" class="btn-main pause" onclick="pauseProcess()" disabled>PAUSE</button>
-                <button id="btnStop" class="btn-main stop" onclick="stopProcess()" disabled>STOP</button>
+                <!-- Konten Dirender via JS -->
             </div>
 
             <div class="log-header">
@@ -218,23 +215,41 @@
     let mediaRecorder = null;
     let isRecording = false;
 
-    // Default Konfigurasi
+    const formats = [
+        "-- Ikut Asli --", 
+        ".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".bmp", ".ico", 
+        ".mp4", ".mov", ".avi", ".mkv", ".webm", ".flv", 
+        ".pdf", ".docx", ".doc", ".txt", ".rtf", ".csv", ".xlsx", ".pptx", 
+        ".mp3", ".wav", ".ogg", ".m4a", ".flac", 
+        ".zip", ".rar", ".7z", ".tar"
+    ];
+
+    let isManualFormat = false;
+    let isManualBitrate = false;
+
     let conf = {
-        res: "1920x1080", // QHD
+        res: "1920x1080",
         fps: 30,
-        bitrate: 5000000, // 5 Mbps
+        bitrate: 5000000, 
         mute: false,
         sharpen: true,
-        forceFormat: ".mp4"
+        forceFormat: "-- Ikut Asli --"
     };
 
     function toggleThemeMenu() { const m = document.getElementById('themeMenu'); m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; }
     function setTheme(t) { document.body.className = t; document.getElementById('themeMenu').style.display = 'none'; addLog(`Theme set: ${t.toUpperCase()}`); }
     document.addEventListener('click', e => { if (!document.querySelector('.nav-actions').contains(e.target)) document.getElementById('themeMenu').style.display = 'none'; });
 
-    function updateConfig(key, val) {
-        if(key === 'mute' || key === 'sharpen') conf[key] = val;
-        else conf[key] = val.value;
+    function toggleMode(type, val) { 
+        if(isProcessing) return; 
+        if(type === 'format') isManualFormat = val; 
+        else isManualBitrate = val; 
+        renderConfig(); 
+    }
+
+    function updateConfig(key, element) {
+        let val = (element.type === 'checkbox') ? element.checked : element.value;
+        conf[key] = val;
         validateReady();
     }
 
@@ -243,55 +258,76 @@
         const d = isProcessing ? 'disabled' : '';
         
         if (currentTab === 'setting') {
+            let formatHTML = isManualFormat ? 
+                `<input type="text" class="input-field lock-target" ${d} value="${conf.forceFormat !== '-- Ikut Asli --' ? conf.forceFormat : ''}" placeholder=".ext" oninput="updateConfig('forceFormat', this)">` : 
+                `<select class="input-field lock-target" ${d} onchange="updateConfig('forceFormat', this)">
+                    ${formats.map(f => `<option value="${f}" ${conf.forceFormat === f ? 'selected' : ''}>${f}</option>`).join('')}
+                </select>`;
+
+            let bitrateHTML = isManualBitrate ? 
+                `<input type="number" class="input-field lock-target" ${d} value="${conf.bitrate}" placeholder="Isi angka..." oninput="updateConfig('bitrate', this)">` : 
+                `<select class="input-field lock-target" ${d} onchange="updateConfig('bitrate', this)">
+                    <option value="1000000" ${conf.bitrate == 1000000 ? 'selected' : ''}>1 Mbps</option>
+                    <option value="2500000" ${conf.bitrate == 2500000 ? 'selected' : ''}>2.5 Mbps</option>
+                    <option value="5000000" ${conf.bitrate == 5000000 ? 'selected' : ''}>5 Mbps</option>
+                    <option value="8000000" ${conf.bitrate == 8000000 ? 'selected' : ''}>8 Mbps</option>
+                    <option value="10000000" ${conf.bitrate == 10000000 ? 'selected' : ''}>10 Mbps</option>
+                    <option value="15000000" ${conf.bitrate == 15000000 ? 'selected' : ''}>15 Mbps</option>
+                    <option value="20000000" ${conf.bitrate == 20000000 ? 'selected' : ''}>20 Mbps</option>
+                    <option value="50000000" ${conf.bitrate == 50000000 ? 'selected' : ''}>50 Mbps</option>
+                </select>`;
+
             content.innerHTML = `
                 <div class="config-grid">
                     <div class="input-group">
                         <label>Resolusi Target</label>
                         <select class="input-field lock-target" ${d} onchange="updateConfig('res', this)">
-                            <option value="1280x720" ${conf.res === '1280x720'?'selected':''}>HD (1280x720)</option>
-                            <option value="1920x1080" ${conf.res === '1920x1080'?'selected':''}>FHD (1920x1080)</option>
-                            <option value="2560x1440" ${conf.res === '2560x1440'?'selected':''}>QHD (2560x1440)</option>
+                            <option value="854x480" ${conf.res === '854x480'?'selected':''}>854x480</option>
+                            <option value="1280x720" ${conf.res === '1280x720'?'selected':''}>1280x720</option>
+                            <option value="1920x1080" ${conf.res === '1920x1080'?'selected':''}>1920x1080</option>
+                            <option value="2560x1440" ${conf.res === '2560x1440'?'selected':''}>2560x1440</option>
+                            <option value="3840x2160" ${conf.res === '3840x2160'?'selected':''}>3840x2160</option>
+                            <option value="7680x4320" ${conf.res === '7680x4320'?'selected':''}>7680x4320</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label>Frame Rate (FPS)</label>
                         <select class="input-field lock-target" ${d} onchange="updateConfig('fps', this)">
-                            <option value="24" ${conf.fps == 24?'selected':''}>24 FPS (Cinematic)</option>
-                            <option value="30" ${conf.fps == 30?'selected':''}>30 FPS (Standard)</option>
-                            <option value="60" ${conf.fps == 60?'selected':''}>60 FPS (Smooth)</option>
+                            <option value="24" ${conf.fps == 24?'selected':''}>24</option>
+                            <option value="30" ${conf.fps == 30?'selected':''}>30</option>
+                            <option value="60" ${conf.fps == 60?'selected':''}>60</option>
+                            <option value="120" ${conf.fps == 120?'selected':''}>120</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label>Video Bitrate</label>
-                        <select class="input-field lock-target" ${d} onchange="updateConfig('bitrate', this)">
-                            <option value="2500000" ${conf.bitrate == 2500000?'selected':''}>Medium (2.5 Mbps)</option>
-                            <option value="5000000" ${conf.bitrate == 5000000?'selected':''}>High (5 Mbps)</option>
-                            <option value="10000000" ${conf.bitrate == 10000000?'selected':''}>Max (10 Mbps)</option>
-                        </select>
+                        <div class="label-row">
+                            <label>Video Bitrate</label>
+                            <button class="btn-mode lock-target" ${d} onclick="toggleMode('bitrate', ${!isManualBitrate})">${isManualBitrate ? 'List' : 'Manual'}</button>
+                        </div>
+                        ${bitrateHTML}
                     </div>
                     <div class="input-group">
-                        <label>Format Output (Force Rename)</label>
-                        <select class="input-field lock-target" ${d} onchange="updateConfig('forceFormat', this)">
-                            <option value="--">-- Ikut Asli --</option>
-                            <option value=".mp4" ${conf.forceFormat === '.mp4'?'selected':''}>.MP4</option>
-                            <option value=".mov" ${conf.forceFormat === '.mov'?'selected':''}>.MOV</option>
-                            <option value=".webm" ${conf.forceFormat === '.webm'?'selected':''}>.WEBM</option>
-                        </select>
+                        <div class="label-row">
+                            <label>Format Output</label>
+                            <button class="btn-mode lock-target" ${d} onclick="toggleMode('format', ${!isManualFormat})">${isManualFormat ? 'List' : 'Manual'}</button>
+                        </div>
+                        ${formatHTML}
                     </div>
                 </div>
                 <div style="display:flex; gap:20px; margin-top:5px; padding: 10px; background: var(--input-bg); border: 2px solid var(--border);">
                     <label class="check-container lock-target">
-                        <input type="checkbox" onchange="updateConfig('mute', this.checked)" ${conf.mute?'checked':''} ${d}> Mute Audio
+                        <input type="checkbox" onchange="updateConfig('mute', this)" ${conf.mute?'checked':''} ${d}> Mute Audio
                     </label>
                     <label class="check-container lock-target">
-                        <input type="checkbox" onchange="updateConfig('sharpen', this.checked)" ${conf.sharpen?'checked':''} ${d}> Math Sharpen Filter
+                        <input type="checkbox" onchange="updateConfig('sharpen', this)" ${conf.sharpen?'checked':''} ${d}> Math Sharpen Filter
                     </label>
                 </div>
             `;
         } else {
+            // Tab Eksekusi: Menempatkan tombol proses secara eksklusif di sini
             content.innerHTML = `
                 <div class="input-group">
-                    <label>Folder Sumber (Baca Video)</label>
+                    <label>Folder Sumber (Baca File)</label>
                     <div class="explorer-bar">
                         <div id="inputPath" class="path-display">${sourceDirHandle ? sourceDirHandle.name : 'Pilih folder sumber...'}</div>
                         <button class="btn-browse lock-target" onclick="selectInputFolder()" ${d}>BROWSE</button>
@@ -304,7 +340,20 @@
                         <button class="btn-browse lock-target" onclick="selectOutputFolder()" ${d}>BROWSE</button>
                     </div>
                 </div>
+                <div class="action-bars">
+                    <button id="btnStart" class="btn-main start lock-target" onclick="startProcess()" disabled>START</button>
+                    <button id="btnPause" class="btn-main pause" onclick="pauseProcess()" disabled>PAUSE</button>
+                    <button id="btnStop" class="btn-main stop" onclick="stopProcess()" disabled>STOP</button>
+                </div>
             `;
+            
+            // Mengembalikan state tombol saat proses sedang berjalan (jika user pindah paksa/inspect)
+            if (isProcessing) {
+                document.getElementById('btnStart').disabled = true;
+                document.getElementById('btnPause').disabled = false;
+                document.getElementById('btnStop').disabled = false;
+                document.getElementById('btnPause').innerText = isPaused ? "RESUME" : "PAUSE";
+            }
         }
         validateReady();
     }
@@ -318,8 +367,14 @@
     }
     
     function validateReady() {
-        const btn = document.getElementById('btnStart');
-        btn.disabled = (!sourceDirHandle || !outputDirHandle || isProcessing);
+        const btnStart = document.getElementById('btnStart');
+        if(btnStart) {
+            if(isProcessing) {
+                btnStart.disabled = true;
+            } else {
+                btnStart.disabled = (!sourceDirHandle || !outputDirHandle);
+            }
+        }
     }
 
     async function selectInputFolder() { 
@@ -346,83 +401,106 @@
     }
 
     function getForceRenamedFile(originalName) {
-        if(conf.forceFormat === "--") return originalName;
-        return originalName.substring(0, originalName.lastIndexOf('.')) + conf.forceFormat;
+        let f = conf.forceFormat;
+        if(f === "-- Ikut Asli --" || f.trim() === "") return originalName;
+        if(!f.startsWith('.')) f = '.' + f;
+        return originalName.substring(0, originalName.lastIndexOf('.')) + f;
     }
 
-    // --- MESIN UTAMA CANVAS & MEDIARECORDER ---
-    async function processVideoWithCanvas(file, targetName) {
-        return new Promise(async (resolve, reject) => {
-            const video = document.getElementById('sourceVideo');
+    // --- MESIN GAMBAR ---
+    async function processImageWithCanvas(file, targetName) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
             const canvas = document.getElementById('renderCanvas');
-            const ctx = canvas.getContext('2d', { alpha: false }); // alpha false agar render lebih ringan
+            const ctx = canvas.getContext('2d', { alpha: false });
             
-            // Atur Resolusi Canvas
             const [w, h] = conf.res.split('x');
             canvas.width = parseInt(w);
             canvas.height = parseInt(h);
             
-            // Siapkan Filter Penjernih (Math Sharpen ringan)
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
-            if(conf.sharpen) {
-                // Manipulasi kontras dan saturasi agar terkesan lebih tajam tanpa AI
-                ctx.filter = 'contrast(1.15) saturate(1.1) brightness(1.02)';
-            } else {
-                ctx.filter = 'none';
-            }
+            if(conf.sharpen) ctx.filter = 'contrast(1.15) saturate(1.1) brightness(1.02)';
+            else ctx.filter = 'none';
+
+            img.onload = async () => {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                
+                let mimeType = 'image/jpeg'; // Default output format jika gambar
+                if(targetName.toLowerCase().endsWith('.png')) mimeType = 'image/png';
+                else if(targetName.toLowerCase().endsWith('.webp')) mimeType = 'image/webp';
+                
+                canvas.toBlob(async (blob) => {
+                    try {
+                        const newFileHandle = await outputDirHandle.getFileHandle(targetName, { create: true });
+                        const writable = await newFileHandle.createWritable();
+                        await writable.write(blob);
+                        await writable.close();
+                        resolve(true);
+                    } catch(e) {
+                        reject(e);
+                    }
+                }, mimeType, 0.95);
+            };
+            img.onerror = () => reject("Error loading image");
+            img.src = URL.createObjectURL(file);
+        });
+    }
+
+    // --- MESIN VIDEO ---
+    async function processVideoWithCanvas(file, targetName) {
+        return new Promise(async (resolve, reject) => {
+            const video = document.getElementById('sourceVideo');
+            const canvas = document.getElementById('renderCanvas');
+            const ctx = canvas.getContext('2d', { alpha: false });
+            
+            const [w, h] = conf.res.split('x');
+            canvas.width = parseInt(w);
+            canvas.height = parseInt(h);
+            
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            if(conf.sharpen) ctx.filter = 'contrast(1.15) saturate(1.1) brightness(1.02)';
+            else ctx.filter = 'none';
 
             video.src = URL.createObjectURL(file);
-            video.muted = conf.mute; // Mute element
+            video.muted = conf.mute; 
 
             video.onloadedmetadata = () => {
                 video.play();
-                
-                // Ambil Audio dan Video Stream
                 const vidStream = (canvas.captureStream || canvas.mozCaptureStream).call(canvas, parseInt(conf.fps));
                 
                 if (!conf.mute) {
                     try {
                         const originalStream = (video.captureStream || video.mozCaptureStream).call(video);
                         const audioTracks = originalStream.getAudioTracks();
-                        if (audioTracks.length > 0) {
-                            vidStream.addTrack(audioTracks[0]); // Suntikkan audio asli
-                        }
-                    } catch(e) {
-                        addLog(`Audio routing info: ${e.message}`);
-                    }
+                        if (audioTracks.length > 0) vidStream.addTrack(audioTracks[0]);
+                    } catch(e) { addLog(`Audio routing info: ${e.message}`); }
                 }
 
-                // Siapkan Recorder (Bawaannya WebM)
                 let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: parseInt(conf.bitrate) };
                 if (!MediaRecorder.isTypeSupported(options.mimeType)) {
-                    options = { mimeType: 'video/webm', videoBitsPerSecond: parseInt(conf.bitrate) }; // Fallback
+                    options = { mimeType: 'video/webm', videoBitsPerSecond: parseInt(conf.bitrate) }; 
                 }
                 
                 mediaRecorder = new MediaRecorder(vidStream, options);
                 const chunks = [];
 
                 mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
-                
                 mediaRecorder.onstop = async () => {
-                    const blob = new Blob(chunks, { type: 'video/webm' }); // Hasil akhir adalah Blob WebM
-                    
+                    const blob = new Blob(chunks, { type: 'video/webm' }); 
                     try {
-                        // Tulis hasil dengan NAMA BARU (Force Rename ala REFORNAM)
                         const newFileHandle = await outputDirHandle.getFileHandle(targetName, { create: true });
                         const writable = await newFileHandle.createWritable();
                         await writable.write(blob);
                         await writable.close();
                         resolve(true);
-                    } catch (err) {
-                        reject(err);
-                    }
+                    } catch (err) { reject(err); }
                 };
 
                 mediaRecorder.start();
                 isRecording = true;
 
-                // Looping Lukis Video ke Canvas
                 function drawFrame() {
                     if (isStopped || !isRecording) {
                         video.pause();
@@ -432,13 +510,7 @@
                     if (video.paused || video.ended) return;
 
                     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                    
-                    if(isPaused) {
-                        // Tunggu kalau di-pause (bypass frame)
-                        requestAnimationFrame(drawFrame);
-                    } else {
-                        requestAnimationFrame(drawFrame);
-                    }
+                    requestAnimationFrame(drawFrame);
                 }
                 drawFrame();
             };
@@ -447,7 +519,6 @@
                 isRecording = false;
                 if(mediaRecorder && mediaRecorder.state !== "inactive") mediaRecorder.stop();
             };
-
             video.onerror = (e) => reject("Error loading video");
         });
     }
@@ -458,7 +529,7 @@
         document.getElementById('btnPause').disabled = false; 
         document.getElementById('btnStop').disabled = false;
         addLog(`--- STARTING BATCH PROCESS ---`);
-        addLog(`Settings: ${conf.res} @ ${conf.fps}FPS | Sharpen: ${conf.sharpen}`);
+        addLog(`Settings: ${conf.res} @ ${conf.fps}FPS | Bitrate: ${conf.bitrate}`);
         
         let successCount = 0;
 
@@ -469,23 +540,27 @@
 
                 if (entry.kind === 'file') {
                     const file = await entry.getFile();
-                    const isVideo = file.type.startsWith('video/') || file.name.match(/\.(mp4|mov|webm|avi|mkv)$/i);
+                    const isVideo = file.type.startsWith('video/') || file.name.match(/\.(mp4|mov|webm|avi|mkv|flv)$/i);
+                    const isImage = file.type.startsWith('image/') || file.name.match(/\.(jpg|jpeg|png|webp|bmp|gif)$/i);
                     
+                    const newName = getForceRenamedFile(file.name);
+
                     if(isVideo) {
-                        const newName = getForceRenamedFile(file.name);
-                        addLog(`Processing: ${file.name} ...`);
+                        addLog(`Processing Video: ${file.name} ...`);
                         try {
                             await processVideoWithCanvas(file, newName);
                             successCount++;
                             addLog(`SUCCESS: Saved as ${newName}`);
-                            // Catatan: Jika ingin menghapus file asli setelah sukses, kodenya: 
-                            // await sourceDirHandle.removeEntry(file.name);
-                            // Namun untuk amannya uji coba ini, saya nonaktifkan auto-hapusnya.
-                        } catch(err) {
-                            addLog(`FAILED [${file.name}]: ${err.message || err}`);
-                        }
+                        } catch(err) { addLog(`FAILED [${file.name}]: ${err.message || err}`); }
+                    } else if (isImage) {
+                        addLog(`Processing Image: ${file.name} ...`);
+                        try {
+                            await processImageWithCanvas(file, newName);
+                            successCount++;
+                            addLog(`SUCCESS: Saved as ${newName}`);
+                        } catch(err) { addLog(`FAILED [${file.name}]: ${err.message || err}`); }
                     } else {
-                        addLog(`Skipping ${file.name} (Not a video)`);
+                        addLog(`Skipping ${file.name} (Bukan media valid)`);
                     }
                 }
             }
@@ -504,10 +579,9 @@
         isPaused = !isPaused; 
         document.getElementById('btnPause').innerText = isPaused ? "RESUME" : "PAUSE"; 
         
-        // Pause/Resume HTML Video element
         const video = document.getElementById('sourceVideo');
-        if(isPaused) { video.pause(); mediaRecorder.pause(); } 
-        else { video.play(); mediaRecorder.resume(); }
+        if(isPaused) { video.pause(); if(mediaRecorder) mediaRecorder.pause(); } 
+        else { video.play(); if(mediaRecorder) mediaRecorder.resume(); }
 
         addLog(isPaused ? "Process PAUSED" : "Process RESUMED"); 
     }
