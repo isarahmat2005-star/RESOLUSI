@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIDUPSCALER by IRS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb; --success: #22c55e; --danger: #ef4444; --bg-body: #f0f2f5;
+            --card-bg: #ffffff; --border: #d1d5db; --text: #1f2937; --input-bg: #ffffff;
+            --log-bg: #111827; --log-text: #60a5fa; --grid-color: rgba(37, 99, 235, 0.1);
+        }
+
+        /* Variasi Tema Lengkap (100% Disertakan) */
+        body.light-clean { --primary: #2563eb; --bg-body: #f0f2f5; --card-bg: #ffffff; --text: #1f2937; --input-bg: #ffffff; --border: #2563eb; }
+        body.luxury-gold { --primary: #d4af37; --bg-body: #1a1a1a; --card-bg: #2d2d2d; --text: #d4af37; --input-bg: #3d3d3d; --border: #d4af37; }
+        body.dark-pro { --primary: #3b82f6; --bg-body: #050505; --card-bg: #121212; --text: #e0e0e0; --input-bg: #1e1e1e; --border: #3b82f6; }
+        body.midnight-navy { --primary: #1e3a8a; --bg-body: #020617; --card-bg: #0f172a; --text: #cbd5e1; --input-bg: #020617; --border: #1e3a8a; }
+        body.ocean-breeze { --primary: #0891b2; --bg-body: #ecfeff; --card-bg: #ffffff; --text: #164e63; --input-bg: #f0f9ff; --border: #0891b2; }
+        body.cyberpunk { --primary: #ff00ff; --bg-body: #0d0221; --card-bg: #0f082d; --text: #00ff41; --input-bg: #1a1a1a; --border: #ff00ff; }
+        body.deep-forest { --primary: #15803d; --bg-body: #052e16; --card-bg: #064e3b; --text: #ecfdf5; --input-bg: #022c22; --border: #15803d; }
+        body.deep-ocean { --primary: #0369a1; --bg-body: #082f49; --card-bg: #0c4a6e; --text: #e0f2fe; --input-bg: #082f49; --border: #0369a1; }
+        body.sunset-vibes { --primary: #be123c; --bg-body: #4c0519; --card-bg: #881337; --text: #fff1f2; --input-bg: #4c0519; --border: #be123c; }
+        body.warm-coffee { --primary: #6f4e37; --bg-body: #fdf5e6; --card-bg: #faf0e6; --text: #4b3621; --input-bg: #fff; --border: #6f4e37; }
+        body.retro-paper { --primary: #854d0e; --bg-body: #fef3c7; --card-bg: #fffbeb; --text: #451a03; --input-bg: #fef3c7; --border: #854d0e; }
+        body.dracula { --primary: #bd93f9; --bg-body: #282a36; --card-bg: #44475a; --text: #f8f8f2; --input-bg: #282a36; --border: #bd93f9; }
+        body.ultra-minimal { --primary: #111; --bg-body: #fff; --card-bg: #fff; --text: #111; --input-bg: #f5f5f5; --border: #111; }
+        body.rose-valentine { --primary: #e11d48; --bg-body: #fff1f2; --card-bg: #ffffff; --text: #881337; --input-bg: #fff1f2; --border: #e11d48; }
+        body.violet-night { --primary: #7c3aed; --bg-body: #0f0720; --card-bg: #1e1039; --text: #ede9fe; --input-bg: #0f0720; --border: #7c3aed; }
+        body.sunset-glow { --primary: #f59e0b; --bg-body: #fff7ed; --card-bg: #ffffff; --text: #7c2d12; --input-bg: #fff7ed; --border: #f59e0b; }
+        body.slate-grey { --primary: #475569; --bg-body: #f1f5f9; --card-bg: #ffffff; --text: #0f172a; --input-bg: #f1f5f9; --border: #475569; }
+        body.emerald-city { --primary: #10b981; --bg-body: #064e3b; --card-bg: #065f46; --text: #ecfdf5; --input-bg: #042f2e; --border: #10b981; }
+        body.vaporwave { --primary: #ff71ce; --bg-body: #2d0b5a; --card-bg: #01cdfe; --text: #fff; --input-bg: #2d0b5a; --border: #ff71ce; }
+        body.pastel-dream { --primary: #fbcfe8; --bg-body: #fdf2f8; --card-bg: #ffffff; --text: #be185d; --input-bg: #fdf2f8; --border: #fbcfe8; }
+        body.neon-lime { --primary: #bef264; --bg-body: #0a0a0a; --card-bg: #1a1a1a; --text: #bef264; --input-bg: #000000; --border: #bef264; }
+        body.royal-purple { --primary: #a855f7; --bg-body: #2e1065; --card-bg: #4c1d95; --text: #f5f3ff; --input-bg: #2e1065; --border: #a855f7; }
+        body.burning-orange { --primary: #f97316; --bg-body: #451a03; --card-bg: #7c2d12; --text: #fff7ed; --input-bg: #451a03; --border: #f97316; }
+        body.arctic-white { --primary: #0ea5e9; --bg-body: #f8fafc; --card-bg: #ffffff; --text: #0f172a; --input-bg: #f1f5f9; --border: #0ea5e9; }
+        body.sweet-candy { --primary: #f472b6; --bg-body: #fff1f2; --card-bg: #ffffff; --text: #9d174d; --input-bg: #fff1f2; --border: #f472b6; }
+        body.military-base { --primary: #84cc16; --bg-body: #1a2e05; --card-bg: #365314; --text: #f7fee7; --input-bg: #1a2e05; --border: #84cc16; }
+        body.deep-space { --primary: #6366f1; --bg-body: #020617; --card-bg: #0f172a; --text: #f8fafc; --input-bg: #000000; --border: #6366f1; }
+        body.mint-fresh { --primary: #10b981; --bg-body: #f0fdf4; --card-bg: #ffffff; --text: #064e3b; --input-bg: #f0fdf4; --border: #10b981; }
+        body.volcano-ash { --primary: #ef4444; --bg-body: #1c1917; --card-bg: #292524; --text: #fafaf9; --input-bg: #1c1917; --border: #ef4444; }
+        body.electric-blue { --primary: #22d3ee; --bg-body: #083344; --card-bg: #155e75; --text: #ecfeff; --input-bg: #083344; --border: #22d3ee; }
+        body.soft-lavender { --primary: #8b5cf6; --bg-body: #f5f3ff; --card-bg: #ffffff; --text: #4c1d95; --input-bg: #f5f3ff; --border: #8b5cf6; }
+        body.forest-moss { --primary: #556b2f; --bg-body: #2e3b23; --card-bg: #3d4f30; --text: #d4e0c0; --input-bg: #2e3b23; --border: #556b2f; }
+        body.nordic-frost { --primary: #5da7b1; --bg-body: #e5e9ec; --card-bg: #ffffff; --text: #2c3e50; --input-bg: #f4f7f9; --border: #5da7b1; }
+        body.industrial-rust { --primary: #a0522d; --bg-body: #2b2b2b; --card-bg: #383838; --text: #e0d5c1; --input-bg: #262626; --border: #a0522d; }
+        body.sakura-night { --primary: #ffb7c5; --bg-body: #1c1c1c; --card-bg: #2d2d2d; --text: #ffb7c5; --input-bg: #383838; --border: #ffb7c5; }
+        body.toxic-neon { --primary: #39ff14; --bg-body: #0a0a0a; --card-bg: #151515; --text: #39ff14; --input-bg: #000000; --border: #39ff14; }
+
+        body {
+            font-family: 'Share Tech', sans-serif; background-color: var(--bg-body);
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 20px 20px; color: var(--text); display: flex; justify-content: center; align-items: center;
+            min-height: 100dvh; margin: 0; padding: 15px; box-sizing: border-box; transition: all 0.3s ease; overflow-x: hidden;
+        }
+
+        .main-wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 600px; gap: 10px; }
+        
+        .title-card { background-color: var(--card-bg); width: 100%; padding: 15px 0; border-radius: 0; border: 2px solid var(--border); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); display: flex; justify-content: center; align-items: center; box-sizing: border-box; z-index: 6; }
+        .title-card h1 { margin: 0; color: var(--primary); font-size: 44px; font-weight: 1000; letter-spacing: 8px; text-transform: uppercase; line-height: 1; }
+
+        .container { background-color: var(--card-bg); width: 100%; height: auto; min-height: 550px; padding: 25px; border-radius: 0; border: 2px solid var(--border); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); display: flex; flex-direction: column; box-sizing: border-box; position: relative; z-index: 5; }
+
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; width: 100%; }
+        .nav-actions { display: flex; gap: 10px; align-items: center; position: relative; }
+
+        .btn-nav-icon { background: var(--primary); color: white !important; border: none; width: 35px; height: 35px; border-radius: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 0 rgba(0,0,0,0.2); text-decoration: none; transition: 0.1s; }
+        .btn-nav-icon:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.2); }
+
+        .theme-menu { position: absolute; top: 45px; right: 0; background: var(--card-bg); border: 2px solid var(--border); border-radius: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 100; width: 200px; max-height: 280px; overflow-y: auto; }
+        .theme-opt { padding: 10px 15px; cursor: pointer; font-size: 11px; border-bottom: 1px solid var(--border); background: var(--card-bg); color: var(--text); font-weight: bold; text-transform: uppercase; }
+        .theme-opt:hover { background: var(--primary); color: white; }
+
+        .tab-container { position: relative; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; margin-top: 10px; }
+        .tab-line { position: absolute; width: 100%; height: 2px; background: var(--border); z-index: 0; }
+        .tab-buttons { display: flex; gap: 15px; background: var(--card-bg); padding: 0 10px; z-index: 1; }
+
+        .btn-tab { background: var(--input-bg); border: 2px solid var(--border); font-family: 'Share Tech', sans-serif; font-size: 14px; font-weight: bold; color: var(--text); cursor: pointer; padding: 10px 20px; border-radius: 0; box-shadow: 0 4px 0 var(--border); transition: 0.1s; text-transform: uppercase; }
+        .btn-tab.active { color: white !important; background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 rgba(0,0,0,0.2); transform: translateY(-2px); }
+
+        #tabContent { min-height: 180px; display: flex; flex-direction: column; gap: 15px; }
+
+        .input-group { display: flex; flex-direction: column; gap: 5px; }
+        .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+        label { font-size: 13px; color: var(--primary); font-weight: bold; text-transform: uppercase; }
+
+        .explorer-bar { display: flex; gap: 8px; }
+        .path-display { flex-grow: 1; background: var(--input-bg); border: 2px solid var(--border); padding: 8px 12px; font-size: 13px; color: var(--text); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; border-radius: 0; display: flex; align-items: center; height: 40px; box-sizing: border-box; font-weight: bold; }
+        .btn-browse { background: var(--primary); color: white !important; border: none; padding: 0 20px; cursor: pointer; font-family: 'Share Tech', sans-serif; border-radius: 0; font-weight: bold; font-size: 15px; height: 40px; box-shadow: 0 4px 0 rgba(0,0,0,0.2); position: relative; transition: 0.1s; }
+        .btn-browse:active:not(:disabled) { top: 2px; box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+
+        .config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .input-field { width: 100%; background: var(--input-bg); border: 2px solid var(--border); padding: 8px 12px; color: var(--text); font-family: 'Share Tech', sans-serif; box-sizing: border-box; border-radius: 0; font-size: 14px; font-weight: bold; height: 40px; transition: all 0.3s ease; }
+        .input-field:focus { outline: none; border-color: var(--primary) !important; box-shadow: 0 0 8px var(--primary); }
+        
+        /* Custom Checkbox */
+        .check-container { display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: bold; font-size: 13px; color: var(--text); }
+        .check-container input { width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; border-radius: 0; }
+
+        .action-bars { display: flex; gap: 10px; margin-bottom: 15px; margin-top: auto; }
+        .btn-main { flex: 1; border: none; padding: 0; cursor: pointer; font-family: 'Share Tech', sans-serif; font-weight: bold; text-transform: uppercase; border-radius: 0; font-size: 16px; position: relative; height: 45px; display: flex; align-items: center; justify-content: center; transition: 0.1s; }
+        .start { background: var(--primary); color: white; box-shadow: 0 4px 0 rgba(0,0,0,0.2); }
+        .pause { background: #f59e0b !important; color: white !important; box-shadow: 0 4px 0 #b45309 !important; }
+        .stop { background: var(--danger) !important; color: white !important; box-shadow: 0 4px 0 #b91c1c !important; }
+        .btn-main:active:not(:disabled) { top: 2px; box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .btn-main:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none !important; top: 0 !important; transform: none !important;}
+
+        .log-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .log-panel { background: var(--log-bg); border: 2px solid var(--border); height: 100px; flex-shrink: 0; padding: 10px; overflow-y: scroll; font-size: 11px; color: var(--log-text); border-radius: 0; font-family: 'Share Tech Mono', monospace; }
+        .log-entry { margin-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 2px; }
+        .btn-mode { background: none; border: none; color: var(--primary); cursor: pointer; font-family: 'Share Tech', sans-serif; font-size: 12px; text-decoration: underline; padding: 0; font-weight: bold;}
+        
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--bg-body); } ::-webkit-scrollbar-thumb { background: var(--primary); border: 1px solid var(--border); }
+        
+        /* Preview Canvas yang disembunyikan */
+        #renderCanvas, #sourceVideo { display: none; }
+    </style>
+</head>
+<body class="light-clean">
+
+    <!-- Elemen Tersembunyi Untuk Mesin Video -->
+    <video id="sourceVideo" muted playsinline></video>
+    <canvas id="renderCanvas"></canvas>
+
+    <div class="main-wrapper">
+        <div class="title-card">
+            <h1>VIDUPSCALER</h1>
+        </div>
+
+        <div class="container">
+            <div class="top-nav">
+                 <div id="datetime" style="text-align: left; line-height: 1.2;">
+                    <div id="clock" style="font-size: 24px; font-weight: bold; color: var(--text);">00:00:00</div>
+                    <div id="date" style="font-size: 13px; color: var(--text); opacity: 0.8; font-weight: bold;">00/00/0000</div>
+                </div>
+
+                <div class="nav-actions">
+                    <button class="btn-nav-icon lock-target" onclick="toggleThemeMenu()">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.5-.58 1.5-1.5 0-.43-.17-.83-.44-1.14-.24-.28-.39-.65-.39-1.05 0-.85.68-1.55 1.53-1.55H16c3.31 0 6-2.69 6-6 0-4.97-4.48-9-10-9z"></path></svg>
+                    </button>
+                    <div id="themeMenu" class="theme-menu">
+                        <div class="theme-opt" onclick="setTheme('light-clean')">LIGHT CLEAN</div>
+                        <div class="theme-opt" onclick="setTheme('luxury-gold')">LUXURY GOLD</div>
+                        <div class="theme-opt" onclick="setTheme('dark-pro')">DARK PRO</div>
+                        <div class="theme-opt" onclick="setTheme('midnight-navy')">MIDNIGHT NAVY</div>
+                        <div class="theme-opt" onclick="setTheme('ocean-breeze')">OCEAN BREEZE</div>
+                        <div class="theme-opt" onclick="setTheme('cyberpunk')">CYBERPUNK</div>
+                        <div class="theme-opt" onclick="setTheme('deep-forest')">DEEP FOREST</div>
+                        <div class="theme-opt" onclick="setTheme('deep-ocean')">DEEP OCEAN</div>
+                        <div class="theme-opt" onclick="setTheme('sunset-vibes')">SUNSET VIBES</div>
+                        <div class="theme-opt" onclick="setTheme('warm-coffee')">WARM COFFEE</div>
+                        <div class="theme-opt" onclick="setTheme('retro-paper')">RETRO PAPER</div>
+                        <div class="theme-opt" onclick="setTheme('dracula')">DRACULA</div>
+                        <div class="theme-opt" onclick="setTheme('ultra-minimal')">ULTRA MINIMAL</div>
+                        <div class="theme-opt" onclick="setTheme('rose-valentine')">ROSE VALENTINE</div>
+                        <div class="theme-opt" onclick="setTheme('violet-night')">VIOLET NIGHT</div>
+                        <div class="theme-opt" onclick="setTheme('sunset-glow')">SUNSET GLOW</div>
+                        <div class="theme-opt" onclick="setTheme('slate-grey')">SLATE GREY</div>
+                        <div class="theme-opt" onclick="setTheme('emerald-city')">EMERALD CITY</div>
+                        <div class="theme-opt" onclick="setTheme('vaporwave')">VAPORWAVE</div>
+                        <div class="theme-opt" onclick="setTheme('pastel-dream')">PASTEL DREAM</div>
+                        <div class="theme-opt" onclick="setTheme('neon-lime')">NEON LIME</div>
+                        <div class="theme-opt" onclick="setTheme('royal-purple')">ROYAL PURPLE</div>
+                        <div class="theme-opt" onclick="setTheme('burning-orange')">BURNING ORANGE</div>
+                        <div class="theme-opt" onclick="setTheme('arctic-white')">ARCTIC WHITE</div>
+                        <div class="theme-opt" onclick="setTheme('sweet-candy')">SWEET CANDY</div>
+                        <div class="theme-opt" onclick="setTheme('military-base')">MILITARY BASE</div>
+                        <div class="theme-opt" onclick="setTheme('deep-space')">DEEP SPACE</div>
+                        <div class="theme-opt" onclick="setTheme('mint-fresh')">MINT FRESH</div>
+                        <div class="theme-opt" onclick="setTheme('volcano-ash')">VOLCANO ASH</div>
+                        <div class="theme-opt" onclick="setTheme('electric-blue')">ELECTRIC BLUE</div>
+                        <div class="theme-opt" onclick="setTheme('soft-lavender')">SOFT LAVENDER</div>
+                        <div class="theme-opt" onclick="setTheme('forest-moss')">FOREST MOSS</div>
+                        <div class="theme-opt" onclick="setTheme('nordic-frost')">NORDIC FROST</div>
+                        <div class="theme-opt" onclick="setTheme('industrial-rust')">INDUSTRIAL RUST</div>
+                        <div class="theme-opt" onclick="setTheme('sakura-night')">SAKURA NIGHT</div>
+                        <div class="theme-opt" onclick="setTheme('toxic-neon')">TOXIC NEON</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-container">
+                <div class="tab-line"></div>
+                <div class="tab-buttons">
+                    <button class="btn-tab active lock-target" id="tabSetting" onclick="switchTab('setting')">SETTING</button>
+                    <button class="btn-tab lock-target" id="tabEksekusi" onclick="switchTab('eksekusi')">EKSEKUSI</button>
+                </div>
+            </div>
+            
+            <div id="tabContent">
+                <!-- Konten akan di-render dari JS -->
+            </div>
+
+            <div class="action-bars">
+                <button id="btnStart" class="btn-main start lock-target" onclick="startProcess()" disabled>START</button>
+                <button id="btnPause" class="btn-main pause" onclick="pauseProcess()" disabled>PAUSE</button>
+                <button id="btnStop" class="btn-main stop" onclick="stopProcess()" disabled>STOP</button>
+            </div>
+
+            <div class="log-header">
+                <label>Activity Log</label>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="copyLogs()" class="btn-mode">COPY LOGS</button>
+                    <button onclick="clearLogs()" class="btn-mode">CLEAR LOGS</button>
+                </div>
+            </div>
+            <div id="logPanel" class="log-panel"><div class="log-entry">System ready... Silakan atur SETTING lalu masuk ke EKSEKUSI.</div></div>
+        </div>
+    </div>
+
+<script>
+    let sourceDirHandle = null, outputDirHandle = null;
+    let isPaused = false, isStopped = false, isProcessing = false;
+    let currentTab = 'setting';
+    let mediaRecorder = null;
+    let isRecording = false;
+
+    // Default Konfigurasi
+    let conf = {
+        res: "1920x1080", // QHD
+        fps: 30,
+        bitrate: 5000000, // 5 Mbps
+        mute: false,
+        sharpen: true,
+        forceFormat: ".mp4"
+    };
+
+    function toggleThemeMenu() { const m = document.getElementById('themeMenu'); m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; }
+    function setTheme(t) { document.body.className = t; document.getElementById('themeMenu').style.display = 'none'; addLog(`Theme set: ${t.toUpperCase()}`); }
+    document.addEventListener('click', e => { if (!document.querySelector('.nav-actions').contains(e.target)) document.getElementById('themeMenu').style.display = 'none'; });
+
+    function updateConfig(key, val) {
+        if(key === 'mute' || key === 'sharpen') conf[key] = val;
+        else conf[key] = val.value;
+        validateReady();
+    }
+
+    function renderConfig() {
+        const content = document.getElementById('tabContent');
+        const d = isProcessing ? 'disabled' : '';
+        
+        if (currentTab === 'setting') {
+            content.innerHTML = `
+                <div class="config-grid">
+                    <div class="input-group">
+                        <label>Resolusi Target</label>
+                        <select class="input-field lock-target" ${d} onchange="updateConfig('res', this)">
+                            <option value="1280x720" ${conf.res === '1280x720'?'selected':''}>HD (1280x720)</option>
+                            <option value="1920x1080" ${conf.res === '1920x1080'?'selected':''}>FHD (1920x1080)</option>
+                            <option value="2560x1440" ${conf.res === '2560x1440'?'selected':''}>QHD (2560x1440)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Frame Rate (FPS)</label>
+                        <select class="input-field lock-target" ${d} onchange="updateConfig('fps', this)">
+                            <option value="24" ${conf.fps == 24?'selected':''}>24 FPS (Cinematic)</option>
+                            <option value="30" ${conf.fps == 30?'selected':''}>30 FPS (Standard)</option>
+                            <option value="60" ${conf.fps == 60?'selected':''}>60 FPS (Smooth)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Video Bitrate</label>
+                        <select class="input-field lock-target" ${d} onchange="updateConfig('bitrate', this)">
+                            <option value="2500000" ${conf.bitrate == 2500000?'selected':''}>Medium (2.5 Mbps)</option>
+                            <option value="5000000" ${conf.bitrate == 5000000?'selected':''}>High (5 Mbps)</option>
+                            <option value="10000000" ${conf.bitrate == 10000000?'selected':''}>Max (10 Mbps)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Format Output (Force Rename)</label>
+                        <select class="input-field lock-target" ${d} onchange="updateConfig('forceFormat', this)">
+                            <option value="--">-- Ikut Asli --</option>
+                            <option value=".mp4" ${conf.forceFormat === '.mp4'?'selected':''}>.MP4</option>
+                            <option value=".mov" ${conf.forceFormat === '.mov'?'selected':''}>.MOV</option>
+                            <option value=".webm" ${conf.forceFormat === '.webm'?'selected':''}>.WEBM</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display:flex; gap:20px; margin-top:5px; padding: 10px; background: var(--input-bg); border: 2px solid var(--border);">
+                    <label class="check-container lock-target">
+                        <input type="checkbox" onchange="updateConfig('mute', this.checked)" ${conf.mute?'checked':''} ${d}> Mute Audio
+                    </label>
+                    <label class="check-container lock-target">
+                        <input type="checkbox" onchange="updateConfig('sharpen', this.checked)" ${conf.sharpen?'checked':''} ${d}> Math Sharpen Filter
+                    </label>
+                </div>
+            `;
+        } else {
+            content.innerHTML = `
+                <div class="input-group">
+                    <label>Folder Sumber (Baca Video)</label>
+                    <div class="explorer-bar">
+                        <div id="inputPath" class="path-display">${sourceDirHandle ? sourceDirHandle.name : 'Pilih folder sumber...'}</div>
+                        <button class="btn-browse lock-target" onclick="selectInputFolder()" ${d}>BROWSE</button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Folder Tujuan (Simpan Hasil)</label>
+                    <div class="explorer-bar">
+                        <div id="outputPath" class="path-display">${outputDirHandle ? outputDirHandle.name : 'Pilih folder tujuan...'}</div>
+                        <button class="btn-browse lock-target" onclick="selectOutputFolder()" ${d}>BROWSE</button>
+                    </div>
+                </div>
+            `;
+        }
+        validateReady();
+    }
+
+    function switchTab(t) { 
+        if(isProcessing) return; 
+        currentTab = t; 
+        document.getElementById('tabSetting').className = 'btn-tab ' + (t==='setting'?'active':''); 
+        document.getElementById('tabEksekusi').className = 'btn-tab ' + (t==='eksekusi'?'active':''); 
+        renderConfig(); 
+    }
+    
+    function validateReady() {
+        const btn = document.getElementById('btnStart');
+        btn.disabled = (!sourceDirHandle || !outputDirHandle || isProcessing);
+    }
+
+    async function selectInputFolder() { 
+        try { 
+            sourceDirHandle = await window.showDirectoryPicker({ mode: 'read' }); 
+            renderConfig(); addLog(`Source Linked: ${sourceDirHandle.name}`); 
+        } catch (e) { addLog("Source folder cancelled."); } 
+    }
+
+    async function selectOutputFolder() { 
+        try { 
+            outputDirHandle = await window.showDirectoryPicker({ mode: 'readwrite' }); 
+            renderConfig(); addLog(`Destination Linked: ${outputDirHandle.name}`); 
+        } catch (e) { addLog("Destination folder cancelled."); } 
+    }
+
+    function addLog(m) { const p = document.getElementById('logPanel'); const t = new Date().toLocaleTimeString(); p.innerHTML += `<div class="log-entry"><span>[${t}]</span> ${m}</div>`; p.scrollTop = p.scrollHeight; }
+    function clearLogs() { document.getElementById('logPanel').innerHTML = ''; }
+    function copyLogs() { navigator.clipboard.writeText(Array.from(document.querySelectorAll('.log-entry')).map(e=>e.innerText).join('\n')).then(()=>alert("Logs copied!")); }
+
+    function setLockUI(isLocked) { 
+        isProcessing = isLocked; 
+        document.querySelectorAll('.lock-target').forEach(el => el.disabled = isLocked); 
+    }
+
+    function getForceRenamedFile(originalName) {
+        if(conf.forceFormat === "--") return originalName;
+        return originalName.substring(0, originalName.lastIndexOf('.')) + conf.forceFormat;
+    }
+
+    // --- MESIN UTAMA CANVAS & MEDIARECORDER ---
+    async function processVideoWithCanvas(file, targetName) {
+        return new Promise(async (resolve, reject) => {
+            const video = document.getElementById('sourceVideo');
+            const canvas = document.getElementById('renderCanvas');
+            const ctx = canvas.getContext('2d', { alpha: false }); // alpha false agar render lebih ringan
+            
+            // Atur Resolusi Canvas
+            const [w, h] = conf.res.split('x');
+            canvas.width = parseInt(w);
+            canvas.height = parseInt(h);
+            
+            // Siapkan Filter Penjernih (Math Sharpen ringan)
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            if(conf.sharpen) {
+                // Manipulasi kontras dan saturasi agar terkesan lebih tajam tanpa AI
+                ctx.filter = 'contrast(1.15) saturate(1.1) brightness(1.02)';
+            } else {
+                ctx.filter = 'none';
+            }
+
+            video.src = URL.createObjectURL(file);
+            video.muted = conf.mute; // Mute element
+
+            video.onloadedmetadata = () => {
+                video.play();
+                
+                // Ambil Audio dan Video Stream
+                const vidStream = (canvas.captureStream || canvas.mozCaptureStream).call(canvas, parseInt(conf.fps));
+                
+                if (!conf.mute) {
+                    try {
+                        const originalStream = (video.captureStream || video.mozCaptureStream).call(video);
+                        const audioTracks = originalStream.getAudioTracks();
+                        if (audioTracks.length > 0) {
+                            vidStream.addTrack(audioTracks[0]); // Suntikkan audio asli
+                        }
+                    } catch(e) {
+                        addLog(`Audio routing info: ${e.message}`);
+                    }
+                }
+
+                // Siapkan Recorder (Bawaannya WebM)
+                let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: parseInt(conf.bitrate) };
+                if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                    options = { mimeType: 'video/webm', videoBitsPerSecond: parseInt(conf.bitrate) }; // Fallback
+                }
+                
+                mediaRecorder = new MediaRecorder(vidStream, options);
+                const chunks = [];
+
+                mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
+                
+                mediaRecorder.onstop = async () => {
+                    const blob = new Blob(chunks, { type: 'video/webm' }); // Hasil akhir adalah Blob WebM
+                    
+                    try {
+                        // Tulis hasil dengan NAMA BARU (Force Rename ala REFORNAM)
+                        const newFileHandle = await outputDirHandle.getFileHandle(targetName, { create: true });
+                        const writable = await newFileHandle.createWritable();
+                        await writable.write(blob);
+                        await writable.close();
+                        resolve(true);
+                    } catch (err) {
+                        reject(err);
+                    }
+                };
+
+                mediaRecorder.start();
+                isRecording = true;
+
+                // Looping Lukis Video ke Canvas
+                function drawFrame() {
+                    if (isStopped || !isRecording) {
+                        video.pause();
+                        if(mediaRecorder && mediaRecorder.state !== "inactive") mediaRecorder.stop();
+                        return;
+                    }
+                    if (video.paused || video.ended) return;
+
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    
+                    if(isPaused) {
+                        // Tunggu kalau di-pause (bypass frame)
+                        requestAnimationFrame(drawFrame);
+                    } else {
+                        requestAnimationFrame(drawFrame);
+                    }
+                }
+                drawFrame();
+            };
+
+            video.onended = () => {
+                isRecording = false;
+                if(mediaRecorder && mediaRecorder.state !== "inactive") mediaRecorder.stop();
+            };
+
+            video.onerror = (e) => reject("Error loading video");
+        });
+    }
+
+    async function startProcess() {
+        isStopped = false; isPaused = false;
+        setLockUI(true); 
+        document.getElementById('btnPause').disabled = false; 
+        document.getElementById('btnStop').disabled = false;
+        addLog(`--- STARTING BATCH PROCESS ---`);
+        addLog(`Settings: ${conf.res} @ ${conf.fps}FPS | Sharpen: ${conf.sharpen}`);
+        
+        let successCount = 0;
+
+        try {
+            for await (const entry of sourceDirHandle.values()) {
+                if(isStopped) break;
+                while(isPaused) await new Promise(r => setTimeout(r, 500));
+
+                if (entry.kind === 'file') {
+                    const file = await entry.getFile();
+                    const isVideo = file.type.startsWith('video/') || file.name.match(/\.(mp4|mov|webm|avi|mkv)$/i);
+                    
+                    if(isVideo) {
+                        const newName = getForceRenamedFile(file.name);
+                        addLog(`Processing: ${file.name} ...`);
+                        try {
+                            await processVideoWithCanvas(file, newName);
+                            successCount++;
+                            addLog(`SUCCESS: Saved as ${newName}`);
+                            // Catatan: Jika ingin menghapus file asli setelah sukses, kodenya: 
+                            // await sourceDirHandle.removeEntry(file.name);
+                            // Namun untuk amannya uji coba ini, saya nonaktifkan auto-hapusnya.
+                        } catch(err) {
+                            addLog(`FAILED [${file.name}]: ${err.message || err}`);
+                        }
+                    } else {
+                        addLog(`Skipping ${file.name} (Not a video)`);
+                    }
+                }
+            }
+        } catch (error) {
+            addLog(`System Error: ${error.message}`);
+        }
+
+        if(!isStopped) addLog(`--- ALL COMPLETE --- Total Success: ${successCount}`);
+        setLockUI(false); 
+        document.getElementById('btnPause').disabled = true; 
+        document.getElementById('btnStop').disabled = true;
+        validateReady();
+    }
+
+    function pauseProcess() { 
+        isPaused = !isPaused; 
+        document.getElementById('btnPause').innerText = isPaused ? "RESUME" : "PAUSE"; 
+        
+        // Pause/Resume HTML Video element
+        const video = document.getElementById('sourceVideo');
+        if(isPaused) { video.pause(); mediaRecorder.pause(); } 
+        else { video.play(); mediaRecorder.resume(); }
+
+        addLog(isPaused ? "Process PAUSED" : "Process RESUMED"); 
+    }
+
+    function stopProcess() { 
+        isStopped = true; isRecording = false;
+        addLog("Process STOPPED by User"); 
+        
+        const video = document.getElementById('sourceVideo');
+        video.pause();
+        if(mediaRecorder && mediaRecorder.state !== "inactive") mediaRecorder.stop();
+
+        setLockUI(false); renderConfig(); 
+        document.getElementById('btnPause').disabled = true; 
+        document.getElementById('btnStop').disabled = true; 
+        validateReady(); 
+    }
+
+    function updateClock() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+        document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+        const dd = String(now.getDate()).padStart(2, '0');
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const yyyy = now.getFullYear();
+        document.getElementById('date').textContent = `${dd}/${mm}/${yyyy}`;
+    }
+
+    setInterval(updateClock, 1000); updateClock(); renderConfig();
+</script>
+</body>
+</html>
